@@ -19,6 +19,10 @@ class ToDoItemForm extends React.Component {
     return (e) => {
       e.preventDefault();
       this.props.addTask(this.state);
+      this.setState({
+        title: "",
+        done: false
+      });
     };
   }
 

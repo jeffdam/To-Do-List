@@ -13,8 +13,19 @@ class ToDoList extends React.Component {
     this.addTask = this.addTask.bind(this);
   }
 
+
+  componentDidMount() {
+    const savedList = localStorage.getItem('list');
+    if (savedList) {
+      const parsedList = JSON.parse(savedList);
+      this.setState({ list: parsedList});
+    } 
+  }
+
   addTask(task) {
-    this.setState({list: [...this.state.list, task]});
+    const updatedList = [...this.state.list, task];
+    this.setState({ list: updatedList});
+    localStorage.setItem('list', JSON.stringify(updatedList));
   }
 
   render() {
