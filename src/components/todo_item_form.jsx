@@ -15,8 +15,9 @@ class ToDoItemForm extends React.Component {
     };
   }
 
-  handleSubmit() {
-    return () => {
+  handleSubmit(e) {
+    return (e) => {
+      e.preventDefault();
       this.props.addTask(this.state);
     };
   }

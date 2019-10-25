@@ -7,24 +7,25 @@ class ToDoList extends React.Component {
     this.state = {
       list: [
         {title: "Build a to-do list", done: false},
-        {title: "Study for interview ", done: false},
+        {title: "Study for interview ", done: true},
       ]
     };
     this.addTask = this.addTask.bind(this);
   }
 
   addTask(task) {
-    this.setState({list: this.state.list.push(task)});
+    this.setState({list: [...this.state.list, task]});
   }
 
   render() {
-    debugger
+    
+    console.log(this.state);
     const toDoList = this.state.list.map((item, idx) => {
+      const checked = item.done ? "fa-check-square" : "fa-square";
       return (
         <li key={idx}>
           <div className="icons">
-            <i className="far fa-square"></i>
-            <i className="far fa-check-square"></i>
+            <i className={`far ${checked}`}></i>
             <i className="fas fa-edit"></i>
             <i className="fas fa-trash-alt"></i>
           </div>
