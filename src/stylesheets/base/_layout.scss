@@ -1,0 +1,26 @@
+button {
+  padding: 10px;
+  color: white;
+  background: grey;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  align-items: flex-end;
+}
+
+.todo-list {
+  background: grey;
+  padding: 40px;
+
+  li {
+    padding: 10px;
+    background: white;
+  }
+
+  li + li {
+    margin-top: 10px;
+  }
+}
+
