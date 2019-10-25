@@ -5,31 +5,42 @@ class ToDoList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [
-        {title: "Build a to-do list", done: false},
-        {title: "Study for interview ", done: true},
-      ]
+      list: {}, 
+      count: 0
     };
     this.addTask = this.addTask.bind(this);
+    this.updateList = this.updateList.bind(this);
   }
-
 
   componentDidMount() {
     const savedList = localStorage.getItem('list');
     if (savedList) {
       const parsedList = JSON.parse(savedList);
-      this.setState({ list: parsedList});
+      this.setState(parsedList);
     } 
   }
 
   addTask(task) {
-    const updatedList = [...this.state.list, task];
-    this.setState({ list: updatedList});
-    localStorage.setItem('list', JSON.stringify(updatedList));
+    const newList = Object.assign({}, this.state);
+    newList.list[this.state.count] = task;
+    newList.count = this.state.count + 1;
+    this.updateList(newList);
+  }
+
+  editTask(taskId, task) {
+    const newList = Object.assign({}, this.state);
+    newList.list[taskId] = task;
+    this.updateList(newList);
+  }
+  
+  updateList(newList) {
+    this.setState(newList);
+    localStorage.setItem('list', JSON.stringify(newList));  
   }
 
   render() {
-    const toDoList = this.state.list.map((item, idx) => {
+    console.log(this.state.list);
+    const toDoList = Object.values(this.state.list).map((item, idx) => {
       const checked = item.done ? "fa-check-square" : "fa-square";
       return (
         <li key={idx}>
