@@ -27,14 +27,23 @@ class ToDoItem extends React.Component {
     };
   }
 
+  markDone() {
+    return () => {
+      const newTask = Object.assign({}, this.props.item);
+      newTask.done = newTask.done ? false : true;
+      this.props.modifyList("Edit", newTask);
+    };
+  }
+
   render() {
     const { item } = this.props;
     const checked = item.done ? "fa-check-square" : "fa-square";
+    const showAsDone = item.done ? "done" : "";
     const hideForm = this.state.edit ? "" : "hide";
     return (
-      <li>
+      <li className={`task-item ${showAsDone}`}>
         <div className="icons">
-          <i className={`far ${checked}`}></i>
+          <i className={`far ${checked}`} onClick={this.markDone()}></i>
           <i className="fas fa-edit" onClick={this.revealForm()}></i>
           <i className="fas fa-trash-alt" onClick={this.deleteTask()}></i>
         </div>

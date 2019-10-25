@@ -16,9 +16,8 @@ button {
 
   li {
     padding: 10px;
-    background: white;
   }
-
+  
   li + li {
     margin-top: 10px;
   }
@@ -29,15 +28,21 @@ button {
 }
 
 i {
+  margin: 20px;
   cursor: pointer;
   margin: 5px;
 }
 
-form {
-  margin: 20px;
-}
-
 .edit-form {
   display: flex;
+}
+
+.task-item {
+  background: white;
+}
+
+.done {
+  background: lightgreen;
+  color: grey;
 }
 
