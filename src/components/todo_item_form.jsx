@@ -4,8 +4,10 @@ class ToDoItemForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.taskId,
       title: "",
-      done: false
+      done: false,
+      edit: false
     };
   }
 
@@ -18,8 +20,9 @@ class ToDoItemForm extends React.Component {
   handleSubmit(e) {
     return (e) => {
       e.preventDefault();
-      this.props.addTask(this.state);
+      this.props.modifyList(this.props.formType, this.state);
       this.setState({
+        id: this.props.taskId + 1,
         title: "",
         done: false
       });
