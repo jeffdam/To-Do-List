@@ -15,6 +15,12 @@ class ToDoItem extends React.Component {
     };
   }
 
+  deleteTask() {
+    return () => {
+      this.props.modifyList("Delete", this.props.item);
+    };
+  }
+
   hideForm() {
     return () => {
       this.setState({edit: false});
@@ -30,7 +36,7 @@ class ToDoItem extends React.Component {
         <div className="icons">
           <i className={`far ${checked}`}></i>
           <i className="fas fa-edit" onClick={this.handleEdit()}></i>
-          <i className="fas fa-trash-alt"></i>
+          <i className="fas fa-trash-alt" onClick={this.deleteTask()}></i>
         </div>
         {item.title}
         <div className={hideForm}>
