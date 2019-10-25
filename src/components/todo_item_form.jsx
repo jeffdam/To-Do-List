@@ -32,7 +32,11 @@ class ToDoItemForm extends React.Component {
         <h2>Add To-Do Item</h2>
         <form>
           <label>New Task
-            <input type="text" onChange={this.handleUpdate()}/>
+            <input 
+              type="text" 
+              onChange={this.handleUpdate()}
+              value={this.state.title}  
+            />
           </label>
           <button type="submit" onClick={this.handleSubmit()}>Add Task</button>
         </form>

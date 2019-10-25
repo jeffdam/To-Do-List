@@ -29,8 +29,6 @@ class ToDoList extends React.Component {
   }
 
   render() {
-    
-    console.log(this.state);
     const toDoList = this.state.list.map((item, idx) => {
       const checked = item.done ? "fa-check-square" : "fa-square";
       return (
