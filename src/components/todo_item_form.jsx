@@ -5,7 +5,7 @@ class ToDoItemForm extends React.Component {
     super(props);
     this.state = {
       id: this.props.taskId,
-      title: "",
+      title: this.props.title,
       done: false,
       edit: false
     };
@@ -21,8 +21,11 @@ class ToDoItemForm extends React.Component {
     return (e) => {
       e.preventDefault();
       this.props.modifyList(this.props.formType, this.state);
+      if (this.props.formType === "Edit") {
+        this.props.hideForm();
+      }
       this.setState({
-        id: this.props.taskId + 1,
+        id: this.props.taskId,
         title: "",
         done: false
       });
@@ -32,16 +35,15 @@ class ToDoItemForm extends React.Component {
   render() {
     return (
       <section>
-        <h2>Add To-Do Item</h2>
         <form>
-          <label>New Task
+          <label>{`${this.props.formType} Task`}
             <input 
               type="text" 
               onChange={this.handleUpdate()}
               value={this.state.title}  
             />
           </label>
-          <button type="submit" onClick={this.handleSubmit()}>Add Task</button>
+          <button type="submit" onClick={this.handleSubmit()}>{`${this.props.formType} Task`}</button>
         </form>
       </section>
     )

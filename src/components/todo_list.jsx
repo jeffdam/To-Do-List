@@ -27,6 +27,7 @@ class ToDoList extends React.Component {
       newList.list[task.id] = task;
       newList.count = this.state.count + 1;
     } else if (type === "Edit") {
+      task.edit = false;
       newList.list[task.id] = task;
     } else {
       delete newList.list[task.id];
@@ -38,7 +39,7 @@ class ToDoList extends React.Component {
   render() {
     const toDoList = Object.values(this.state.list).map((item, idx) => {
       return (
-        <ToDoItem key={idx} item={item}/>
+        <ToDoItem key={idx} item={item} modifyList={this.modifyList}/>
       )
     });
     
@@ -48,7 +49,7 @@ class ToDoList extends React.Component {
         <ul className="todo-list">
           { toDoList }
         </ul>
-        <ToDoItemForm formType="Add" modifyList={this.modifyList} />
+        <ToDoItemForm formType="Add" title="" modifyList={this.modifyList} />
       </main>
     )
   }
