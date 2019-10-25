@@ -41,6 +41,7 @@ class ToDoItem extends React.Component {
         {item.title}
         <div className={hideForm}>
           <ToDoForm formType="Edit" modifyList={this.props.modifyList} title={item.title} taskId={item.id} hideForm={this.hideForm()}/>
+          <div onClick={this.hideForm()}>Cancel</div>
         </div>
       </li>
     )
